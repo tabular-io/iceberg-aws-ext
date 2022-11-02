@@ -1,0 +1,36 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath "com.diffplug.spotless:spotless-plugin-gradle:6.11.0"
+  }
+}
+
+apply plugin: "java"
+apply plugin: "com.diffplug.spotless"
+
+group = 'io.tabular'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation "org.apache.iceberg:iceberg-core:1.0.0"
+  implementation "org.apache.iceberg:iceberg-common:1.0.0"
+  implementation "org.apache.iceberg:iceberg-aws:1.0.0"
+  implementation "org.apache.parquet:parquet-hadoop:1.12.3"
+  implementation "org.apache.iceberg:iceberg-bundled-guava:1.0.0"
+  implementation "software.amazon.awssdk:s3:2.17.257"
+}
+
+spotless {
+  java {
+    target "src/**/*.java"
+    googleJavaFormat("1.7")
+  }
+}
